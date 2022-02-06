@@ -4,7 +4,7 @@
 compare the noise levels of multiple images and compare physical properties of anatomical structures.
 
 ## GUI of line intensity profile extension:
-![](https://github.com/SKaushalya98/Slicer_Extension/blob/master/GUI.png)
+![](https://github.com/SKaushalya98/Slicer_Extension/blob/master/GUI.PNG)
 
 
 ## Test Results:
