@@ -304,28 +304,30 @@ class LineIntensityProfileTest(ScriptedLoadableModuleTest):
     
     import SampleData
     sampleDataLogic = SampleData.SampleDataLogic()
-    volumeNode = sampleDataLogic.downloadMRHead()
-
+    volumeNode1 = sampleDataLogic.downloadMRBrainTumor1()
+    volumeNode2 = sampleDataLogic.downloadMRHead()
+    
     self.delayDisplay('Loaded test data set')
    
     logic = LineIntensityProfileLogic()
     
-    self.assertIsNotNone( logic.hasImageData(volumeNode) )
+    self.assertIsNotNone( logic.hasImageData(volumeNode1) )
+    self.assertIsNotNone( logic.hasImageData(volumeNode2) )
   
     # initialize ruler node in a known location
     rulerNode = slicer.vtkMRMLAnnotationRulerNode()
     slicer.mrmlScene.AddNode(rulerNode)
-    rulerNode.SetPosition1(-65,100,60)
-    rulerNode.SetPosition2(-15,60,60)
+    rulerNode.SetPosition1(-5,10,-10)
+    rulerNode.SetPosition2(-15,60,-10)
     rulerNode.SetName('Test')
     
     # initialize input selectors
     moduleWidget = slicer.modules.LineIntensityProfileWidget
-  # moduleWidget.rulerSelector.setCurrentNode(rulerNode)
-    # moduleWidget.inputSelector1.setCurrentNode(volumeNode)
-    # moduleWidget.inputSelector2.setCurrentNode(volumeNode)
+    moduleWidget.rulerSelector.setCurrentNode(rulerNode)
+    moduleWidget.inputSelector1.setCurrentNode(volumeNode1)
+    moduleWidget.inputSelector2.setCurrentNode(volumeNode2)
 
-    # self.delayDisplay('Inputs initialized!')
+    self.delayDisplay('Inputs initialized!')
     
     moduleWidget.onApplyButton()
     
